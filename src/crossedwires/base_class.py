@@ -20,6 +20,11 @@ class ModelWeightDataset:
 
     @property
     def optimizer_result(self, num=None):
+        # check if baseline url is None
+        if not self.baseline_url:
+            raise AttributeError(
+                "Baseline url has not been set. Cannot access google cloud storage without base url."
+            )
         if hasattr(self.optimizer_results):
             if not num:
                 # return all
@@ -43,6 +48,11 @@ class ModelWeightDataset:
 
     @property
     def ray_tune_dataframes(self, num=None):
+        # check if baseline url is None
+        if not self.baseline_url:
+            raise AttributeError(
+                "Baseline url has not been set. Cannot access google cloud storage without base url."
+            )
         if hasattr(self.ray_tune_dfs):
             if not num:
                 # return all
@@ -64,14 +74,26 @@ class ModelWeightDataset:
             else:
                 return self.ray_tune_dfs[num]
 
+    def get_pytorch_model(self, trial_name):
+        raise NotImplementedError
 
-class TrialResult:
-    def __init__(self, name):
-        self.name = name
-        self.url = name
+    def get_pytorch_weights(self, trial_name):
+        raise NotImplementedError
 
-    # @property
-    # def pytorch_weights(self):
-    #     if not hasattr(self, "pytorch_weights"):
-    #         # load the pt model from google cloud storage
-    #
+    def get_tensorflow_weights(self, trial_name):
+        raise NotImplementedError
+
+    def get_tensorflow_model(self, trial_name):
+        raise NotImplementedError
+
+
+# class TrialResult:
+#     def __init__(self, name):
+#         self.name = name
+#         self.url = name
+
+# @property
+# def pytorch_weights(self):
+#     if not hasattr(self, "pytorch_weights"):
+#         # load the pt model from google cloud storage
+#
