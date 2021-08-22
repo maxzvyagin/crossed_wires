@@ -2,6 +2,9 @@ import requests
 import pickle
 from io import BytesIO
 import pandas as pd
+import torch
+from os.path import exists
+import os
 
 
 class ModelWeightDataset:
@@ -75,13 +78,66 @@ class ModelWeightDataset:
             else:
                 return self.ray_tune_dfs[num]
 
+    def get_pytorch_weights(self, experiment_name, trial_name):
+        """Return state dict of specific trial's pytorch model"""
+        if not self.baseline_url:
+            raise AttributeError(
+                "Baseline url has not been set. Cannot access google cloud storage without base url."
+            )
+        weights_file_name = "/tmp/{}_{}.pt_model.pt".format(experiment_name, trial_name)
+        # get the weights either from cache or google cloud
+        if exists(weights_file_name):
+            weights = torch.load(weights_file_name)
+        else:
+            weights = requests.get(
+                self.baseline_url + "/model_weights/{}.pt_model.pt".format(trial_name)
+            ).content
+            with open(weights_file_name, "w") as f:
+                f.write(weights)
+        # return the weights
+        return weights
+
+    def get_tensorflow_weights(self, experiment_name, trial_name):
+        """Get the model weights/definitions from the google cloud storage, save to folder"""
+        weights_file_name = "/tmp/{}_{}tf_model/".format(experiment_name, trial_name)
+        if exists(weights_file_name):
+            pass
+        else:
+            os.mkdir(weights_file_name)
+            os.mkdir(weights_file_name + "/variables")
+            # get each kind of file needed
+            with open(weights_file_name + "/saved_model.pb", "w") as f:
+                saved_model = requests.get(
+                    self.baseline_url
+                    + "/model_weights/{}tf_model/saved_model.pb".format(trial_name)
+                ).content
+                f.write(saved_model)
+            with open(
+                weights_file_name + "/variables/variables.data-00000-of-00001"
+            ) as f:
+                variables_data = requests.get(
+                    self.baseline_url
+                    + "/model_weights/{}tf_model/variables/variables.data-00000-of-00001".format(
+                        trial_name
+                    )
+                ).content
+                f.write(variables_data)
+            with open(weights_file_name + "/variables/variables.index") as f:
+                variables_index = requests.get(
+                    self.baseline_url
+                    + "/model_weights/{}tf_model/variables/variables.index".format(
+                        trial_name
+                    )
+                ).content
+                f.write(variables_index)
+        print(
+            "Tensorflow Model definition has been saved to {}. Feel free to call get_tensorflow_model(trial_name).".format(
+                weights_file_name
+            )
+        )
+        return
+
     def get_pytorch_model(self, trial_name):
-        raise NotImplementedError
-
-    def get_pytorch_weights(self, trial_name):
-        raise NotImplementedError
-
-    def get_tensorflow_weights(self, trial_name):
         raise NotImplementedError
 
     def get_tensorflow_model(self, trial_name):
