@@ -11,12 +11,13 @@ class ModelWeightDataset:
         self.baseline_url = None
         self.optimizer_results = None
         self.ray_tune_dfs = None
+        self.wandb_dataframe = None
 
     @property
-    def dataframe(self):
-        if not hasattr(self, "dataframe"):
-            self.dataframe = pd.read_csv(self.file_name)
-        return self.dataframe
+    def wandb_dataframe(self):
+        if not hasattr(self, "wandb_dataframe"):
+            self.wandb_dataframe = pd.read_csv(self.file_name)
+        return self.wandb_dataframe
 
     @property
     def optimizer_result(self, num=None):
