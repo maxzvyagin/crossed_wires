@@ -1,12 +1,7 @@
 from crossedwires.base_class import ModelWeightDataset
 import torchvision.models as models
 import tensorflow as tf
-
-# import requests
 from os.path import exists
-
-# import torch
-# import os
 
 
 class DenseNet121Dataset(ModelWeightDataset):
