@@ -12,7 +12,7 @@ class DenseNet121Dataset(ModelWeightDataset):
         self, filename="densenet_cifar10_wandb_export.csv", num_spaces_searched=16
     ):
         filename = str(
-            Path(crossedwires.cifar10.densenet121.densenet121_results.__file__)
+            Path(crossedwires.cifar10.densenet121.densenet121_results.__file__).parent
             / filename
         )
         super().__init__(filename, num_spaces_searched)
