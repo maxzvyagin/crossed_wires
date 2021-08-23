@@ -14,13 +14,13 @@ class ModelWeightDataset:
         self.baseline_url = None
         self.optimizer_results = None
         self.ray_tune_dfs = None
-        self.wandb_dataframe = None
+        self._wandb_dataframe = None
 
     @property
     def wandb_dataframe(self):
-        if hasattr(self, "wandb_dataframe"):
-            self.wandb_dataframe = pd.read_csv(self.file_name)
-        return self.wandb_dataframe
+        if self._wandb_dataframe is None:
+            self._wandb_dataframe = pd.read_csv(self.file_name)
+        return self._wandb_dataframe
 
     @property
     def optimizer_result(self, num=None):
@@ -29,7 +29,7 @@ class ModelWeightDataset:
             raise AttributeError(
                 "Baseline url has not been set. Cannot access google cloud storage without base url."
             )
-        if hasattr(self, "optimizer_results"):
+        if not self.optimizer_results:
             if not num:
                 # return all
                 return self.optimizer_results
@@ -57,12 +57,12 @@ class ModelWeightDataset:
             raise AttributeError(
                 "Baseline url has not been set. Cannot access google cloud storage without base url."
             )
-        if hasattr(self, "ray_tune_dfs"):
+        if not self.ray_tune_dfs:
             if not num:
                 # return all
                 return self.ray_tune_dfs
             else:
-                return self.optimizer_results[num]
+                return self.ray_tune_dfs[num]
         else:
             self.ray_tune_dfs = []
             # get the csvs
