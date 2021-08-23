@@ -18,7 +18,7 @@ class ModelWeightDataset:
 
     @property
     def wandb_dataframe(self):
-        if not hasattr(self, "wandb_dataframe"):
+        if hasattr(self, "wandb_dataframe"):
             self.wandb_dataframe = pd.read_csv(self.file_name)
         return self.wandb_dataframe
 
@@ -29,7 +29,7 @@ class ModelWeightDataset:
             raise AttributeError(
                 "Baseline url has not been set. Cannot access google cloud storage without base url."
             )
-        if hasattr(self.optimizer_results):
+        if hasattr(self, "optimizer_results"):
             if not num:
                 # return all
                 return self.optimizer_results
@@ -57,7 +57,7 @@ class ModelWeightDataset:
             raise AttributeError(
                 "Baseline url has not been set. Cannot access google cloud storage without base url."
             )
-        if hasattr(self.ray_tune_dfs):
+        if hasattr(self, "ray_tune_dfs"):
             if not num:
                 # return all
                 return self.ray_tune_dfs
@@ -142,6 +142,10 @@ class ModelWeightDataset:
 
     def get_tensorflow_model(self, trial_name):
         raise NotImplementedError
+
+    @wandb_dataframe.setter
+    def wandb_dataframe(self, value):
+        self._wandb_dataframe = value
 
 
 # class TrialResult:

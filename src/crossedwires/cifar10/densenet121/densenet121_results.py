@@ -9,7 +9,7 @@ class DenseNet121Dataset(ModelWeightDataset):
     def __init__(
         self, filename="densenet121_cifar10_wandb_export.csv", num_spaces_searched=16
     ):
-        super().__init__(self, filename, num_spaces_searched)
+        super().__init__(filename, num_spaces_searched)
         self.baseline_url = "https://storage.googleapis.com/crossed-wires-dataset/cifar10/densenet_lambda"
 
     def trial_lookup(self, epochs, learning_rate, batch_size, adam_epsilon) -> list:
