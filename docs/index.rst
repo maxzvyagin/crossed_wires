@@ -8,7 +8,7 @@ Welcome to crossedwires's documentation!
 
 .. toctree::
    :maxdepth: 2
-   .. :caption: Contents:
+   :caption: Contents:
    install
    support
 
