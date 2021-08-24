@@ -10,6 +10,12 @@ Welcome to crossedwires's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+Here are some instructions:
+===========================
+
+### Installation 
+
+### Contribution
 
 
 Indices and tables
