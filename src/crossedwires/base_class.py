@@ -87,13 +87,14 @@ class ModelWeightDataset:
         weights_file_name = "/tmp/{}_{}.pt_model.pt".format(experiment_name, trial_name)
         # get the weights either from cache or google cloud
         if exists(weights_file_name):
-            weights = torch.load(weights_file_name)
+            pass
         else:
             weights = requests.get(
                 self.baseline_url + "/model_weights/{}.pt_model.pt".format(trial_name)
             ).content
-            with open(weights_file_name, "w") as f:
+            with open(weights_file_name, "wb") as f:
                 f.write(weights)
+        weights = torch.load(weights_file_name)
         # return the weights
         return weights
 
@@ -106,14 +107,14 @@ class ModelWeightDataset:
             os.mkdir(weights_file_name)
             os.mkdir(weights_file_name + "/variables")
             # get each kind of file needed
-            with open(weights_file_name + "/saved_model.pb", "w") as f:
+            with open(weights_file_name + "/saved_model.pb", "wb") as f:
                 saved_model = requests.get(
                     self.baseline_url
                     + "/model_weights/{}tf_model/saved_model.pb".format(trial_name)
                 ).content
                 f.write(saved_model)
             with open(
-                weights_file_name + "/variables/variables.data-00000-of-00001"
+                weights_file_name + "/variables/variables.data-00000-of-00001", "wb"
             ) as f:
                 variables_data = requests.get(
                     self.baseline_url
@@ -122,7 +123,7 @@ class ModelWeightDataset:
                     )
                 ).content
                 f.write(variables_data)
-            with open(weights_file_name + "/variables/variables.index") as f:
+            with open(weights_file_name + "/variables/variables.index", "wb") as f:
                 variables_index = requests.get(
                     self.baseline_url
                     + "/model_weights/{}tf_model/variables/variables.index".format(
@@ -142,10 +143,6 @@ class ModelWeightDataset:
 
     def get_tensorflow_model(self, trial_name):
         raise NotImplementedError
-
-    @wandb_dataframe.setter
-    def wandb_dataframe(self, value):
-        self._wandb_dataframe = value
 
 
 # class TrialResult:
