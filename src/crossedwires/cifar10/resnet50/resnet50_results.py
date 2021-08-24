@@ -1,22 +1,23 @@
 import crossedwires
 from pathlib import Path
 from crossedwires.base_class import ModelWeightDataset
-
-# import torchvision.models as models
-from cross_framework_hpo.vgg16.updated_torchvision_vgg import vgg16
+import torchvision.models as models
 import tensorflow as tf
 from os.path import exists
 
 
-class VGG16Dataset(ModelWeightDataset):
-    # inheriting from base class, specialized to VGG
-    def __init__(self, filename="vgg_cifar10_wandb_export.csv", num_spaces_searched=16):
+class ResNet121Dataset(ModelWeightDataset):
+    # inheriting from base class, specialized to resnet
+    def __init__(
+        self, filename="resnet_cifar10_wandb_export.csv", num_spaces_searched=16
+    ):
         filename = str(
-            Path(crossedwires.cifar10.vgg16.vgg16_results.__file__).parent / filename
+            Path(crossedwires.cifar10.resnet50.resnet50_results.__file__).parent
+            / filename
         )
         super().__init__(filename, num_spaces_searched)
         self.baseline_url = (
-            "https://storage.googleapis.com/crossed-wires-dataset/cifar10/vgg_lambda"
+            "https://storage.googleapis.com/crossed-wires-dataset/cifar10/resnet_lambda"
         )
 
     def trial_lookup(self, epochs, learning_rate, batch_size, adam_epsilon) -> list:
@@ -30,17 +31,19 @@ class VGG16Dataset(ModelWeightDataset):
         return list(df.Name)
 
     def get_pytorch_weights(self, trial_name):
-        weights = ModelWeightDataset.get_pytorch_weights(self, "vgg_lambda", trial_name)
+        weights = ModelWeightDataset.get_pytorch_weights(
+            self, "resnet_lambda", trial_name
+        )
         return weights
 
     def get_tensorflow_weights(self, trial_name):
-        ModelWeightDataset.get_tensorflow_weights(self, "vgg_lambda", trial_name)
+        ModelWeightDataset.get_tensorflow_weights(self, "resnet_lambda", trial_name)
         return
 
     def get_pytorch_model(self, trial_name):
         """Returns pretrained torch model in eval mode"""
-        # define the pytorch model - NOTE THAT THIS IS A CUSTOM MODEL
-        model = vgg16(pretrained=False, num_classes=10)
+        # define the pytorch model
+        model = models.resnet50(pretrained=False, num_classes=10)
         weights = self.get_pytorch_weights(trial_name)
         model.load_state_dict(weights)
         model.eval()
@@ -48,7 +51,7 @@ class VGG16Dataset(ModelWeightDataset):
 
     def get_tensorflow_model(self, trial_name):
         """Returns tensorflow model"""
-        weights_file_name = "/tmp/{}_{}tf_model/".format("vgg_lambda", trial_name)
+        weights_file_name = "/tmp/{}_{}tf_model/".format("resnet_lambda", trial_name)
         if not exists(weights_file_name):
             self.get_tensorflow_weights(trial_name)
         model = tf.keras.models.load_model(weights_file_name)
