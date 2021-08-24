@@ -1,5 +1,7 @@
 # CrossedWires
-Python package and documentation to access CrossedWires dataset.
+Python package used in order to interact with the CrossedWires dataset, hosted on Google Cloud storage. 
+
+Documentation is available at: https://crossedwires.readthedocs.io/
 
 ### How to use:
 
