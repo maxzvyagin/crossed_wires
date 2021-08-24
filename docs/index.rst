@@ -8,14 +8,16 @@ Welcome to crossedwires's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   .. :caption: Contents:
+   install
+   support
 
-Here are some instructions:
-===========================
+.. Here are some instructions:
+.. ===========================
 
-### Installation 
+.. ### Installation 
 
-### Contribution
+.. ### Contribution
 
 
 Indices and tables
