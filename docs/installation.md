@@ -23,4 +23,6 @@ using this command:
 (crossed_wires_venv) $ pip install cross_framework_hpo
 ```
 
-You should be all set! Now to start loading some models. 
+You should be all set! If you're having problems, feel free to submit a GitHub issue.
+
+Now to start loading some models! 
