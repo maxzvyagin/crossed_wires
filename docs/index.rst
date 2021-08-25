@@ -18,7 +18,9 @@ you'll need in order to start working with the models.
    key_links
    contribute
 
-.. footer:: Note: this site has been designed using resources from Flaticon.com
+.. footer::
+
+   Note: this site has been designed using resources from Flaticon.com
 
 .. Indices and tables
 .. .. ==================
