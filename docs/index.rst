@@ -3,6 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+Homepage
 ======
 
 Welcome to the CrossedWires dataset! Here you'll find all the information
@@ -17,11 +18,11 @@ you'll need in order to start working with the models.
    key_links
    contribute
 
-
+.. footer:: Note: this site has been designed using resources from Flaticon.com
 
 .. Indices and tables
-.. ==================
+.. .. ==================
 
-.. * :ref:`genindex`
-.. * :ref:`modindex`
-.. * :ref:`search`
+.. .. * :ref:`genindex`
+.. .. * :ref:`modindex`
+.. .. * :ref:`search`
