@@ -5,7 +5,7 @@
 It's recommended that you create a fresh environment in order to
 install and use the dataset. 
 
-To begin using CrossedWires, install the module using GitHub and pip:
+To begin using CrossedWires, install the module using pip:
 
 ```commandline
 (crossed_wires_venv) $ pip install crossedwires

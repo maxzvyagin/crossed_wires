@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = "crossedwires"
+project = "CrossedWires Dataset"
 copyright = "2021, Max Zvyagin"
 author = "Max Zvyagin"
 
