@@ -12,71 +12,72 @@ class ModelWeightDataset:
         self.file_name = filename
         self.num_spaces_searched = num_spaces_searched
         self.baseline_url = None
-        self.optimizer_results = None
-        self.ray_tune_dfs = None
+        self._optimizer_results = []
+        self._ray_tune_dfs = []
         self._wandb_dataframe = None
 
-    @property
     def wandb_dataframe(self):
         if self._wandb_dataframe is None:
             self._wandb_dataframe = pd.read_csv(self.file_name)
         return self._wandb_dataframe
 
-    @property
-    def optimizer_result(self, num=None):
+    def optimizer_results(self, num=None):
         # check if baseline url is None
         if not self.baseline_url:
             raise AttributeError(
                 "Baseline url has not been set. Cannot access google cloud storage without base url."
             )
-        if not self.optimizer_results:
+        if len(self._optimizer_results) == self.num_spaces_searched:
             if not num:
                 # return all
-                return self.optimizer_results
+                return self._optimizer_results
             else:
-                return self.optimizer_results[num]
+                return self._optimizer_results[num]
         else:
-            self.optimizer_results = []
+            self._optimizer_results = []
             # get each byte stream of optimizer results from google cloud storage
             for i in range(self.num_spaces_searched):
                 optimizer_bytes = requests.get(
                     self.baseline_url + "/optimizer_result{}.pkl".format(i)
                 ).content
-                optimizer = pickle.loads(optimizer_bytes)
-                self.optimizer_results.append(optimizer)
+                try:
+                    optimizer = pickle.loads(optimizer_bytes)
+                except Exception:
+                    print("Was not able to load optimizer {}.. continuing...".format(i))
+                    optimizer = None
+                self._optimizer_results.append(optimizer)
             if not num:
                 # return all
-                return self.optimizer_results
+                return self._optimizer_results
             else:
-                return self.optimizer_results[num]
+                return self._optimizer_results[num]
 
-    @property
     def ray_tune_dataframes(self, num=None):
         # check if baseline url is None
         if not self.baseline_url:
             raise AttributeError(
                 "Baseline url has not been set. Cannot access google cloud storage without base url."
             )
-        if not self.ray_tune_dfs:
+        if len(self._ray_tune_dfs) == self.num_spaces_searched:
             if not num:
                 # return all
-                return self.ray_tune_dfs
+                return self._ray_tune_dfs
             else:
-                return self.ray_tune_dfs[num]
+                return self._ray_tune_dfs[num]
         else:
-            self.ray_tune_dfs = []
+            self._ray_tune_dfs = []
             # get the csvs
             for i in range(self.num_spaces_searched):
                 df_bytes = requests.get(
                     self.baseline_url + "/space{}.csv".format(i)
                 ).content
                 df = pd.read_csv(BytesIO(df_bytes))
-                self.ray_tune_dfs.append(df)
+                self._ray_tune_dfs.append(df)
             if not num:
                 # return all
-                return self.ray_tune_dfs
+                return self._ray_tune_dfs
             else:
-                return self.ray_tune_dfs[num]
+                return self._ray_tune_dfs[num]
 
     def get_pytorch_weights(self, experiment_name, trial_name):
         """Return state dict of specific trial's pytorch model"""

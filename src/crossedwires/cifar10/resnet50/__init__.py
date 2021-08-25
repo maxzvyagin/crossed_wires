@@ -1,3 +1,5 @@
+from .resnet50_results import ResNet50Dataset
 
-
-class
+__all__ = [
+    "ResNet50Dataset",
+]

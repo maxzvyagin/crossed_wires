@@ -6,7 +6,7 @@ import tensorflow as tf
 from os.path import exists
 
 
-class ResNet121Dataset(ModelWeightDataset):
+class ResNet50Dataset(ModelWeightDataset):
     # inheriting from base class, specialized to resnet
     def __init__(
         self, filename="resnet_cifar10_wandb_export.csv", num_spaces_searched=16

@@ -1,7 +1,3 @@
-# import pandas as pd
-#
-#
-# class DenseNet121:
-#     def __init__(self):
-#         pass
-#     def get_dataframe(self):
+from .densenet121_results import DenseNet121Dataset
+
+__all__ = ["DenseNet121Dataset"]
