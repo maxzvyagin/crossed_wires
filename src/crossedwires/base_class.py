@@ -114,6 +114,12 @@ class ModelWeightDataset:
                     + "/model_weights/{}tf_model/saved_model.pb".format(trial_name)
                 ).content
                 f.write(saved_model)
+            with open(weights_file_name + "/keras_metadata.pb", "wb") as f:
+                metadata = requests.get(
+                    self.baseline_url
+                    + "/model_weights/{}tf_model/keras_metadata.pb".format(trial_name)
+                ).content
+                f.write(metadata)
             with open(
                 weights_file_name + "/variables/variables.data-00000-of-00001", "wb"
             ) as f:
