@@ -15,7 +15,8 @@ It's also possible to clone the directory if desired and install from
 there.
 
 Note that in order to successfully use the dataset, you also must 
-install the original files used to originally run the hyperparameter
+install the [library](https://github.com/maxzvyagin/cross_framework_hpo) 
+used to originally run the hyperparameter
 search. This is needed for proper model definition, and can be done 
 using this command:
 
