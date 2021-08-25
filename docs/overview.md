@@ -20,7 +20,6 @@ learning community to utilize the CrossedWires dataset to explore the potential
 mechanisms behind these inconsistencies, further the collective understanding of 
 hyperparameter spaces for improved training stability, and build tools for greater
 reliability and reproducibility in deep learning that eliminate these discrepancies.
-The dataset is freely available at <https://github.com/maxzvyagin/crossedwires>.
 
 ## Dataset Details
 The dataset currently consists of PyTorch and TensorFlow models using 
