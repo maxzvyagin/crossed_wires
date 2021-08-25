@@ -6,7 +6,6 @@
   "name" : "CrossedWires",
   "description" : "The dataset currently consists of PyTorch and TensorFlow models using three different computer vision architectures on the CIFAR10 dataset across a wide hyperparameter space. Using hyperparameter optimization (HPO), models are trained on 400 sets of hyperparameters suggested by a search algorithm. These results showcase a wide range of benchmark accuracy divergence on the test set split. The 390 GB dataset and benchmarks presented here include the performance statistics, training curves, and model weights for all 1200 trials, resulting in 2400 total models. The hyperparameter searches were orchestrated using the SpaceRay package. All data is currently hosted publicly on Google Cloud Storage",
   "version" : "1.0",
-  "license" : "GPL-3.0 License",
   "distribution" : {
     "@type" : "DataDownload",
     "contentUrl" : "https://crossedwires.readthedocs.io/"
