@@ -2,7 +2,7 @@
 
 ## Motivation
 
-It can be of great benefit to machine learning practicioners to have multiple 
+It can be of great benefit to machine learning practitioners to have multiple 
 frameworks available for implementation and training of neural networks. However,
 it also comes with challenges, the main of which being *switching* between these different
 libraries while maintaining existing performance levels. Critically, there can 
@@ -30,7 +30,8 @@ results showcase a wide range of benchmark accuracy divergence on the test set
 split. The 390 GB dataset and benchmarks presented here include the performance 
 statistics, training curves, and model weights for all 1200 trials, resulting in 
 2400 total models. The hyperparameter searches are orchestrated using the 
-[SpaceRay](https://github.com/maxzvyagin/spaceray/) package. 
+[SpaceRay](https://github.com/maxzvyagin/spaceray/) package. All data is currently
+hosted publicly on Google Cloud Storage.
 
 ### Note
 
