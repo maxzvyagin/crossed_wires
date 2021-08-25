@@ -34,10 +34,10 @@ statistics, training curves, and model weights for all 1200 trials, resulting in
 [SpaceRay](https://github.com/maxzvyagin/spaceray/) package. All data is currently
 hosted publicly on Google Cloud Storage.
 
-### Note
+### *Note:*
 
-**If you want a more in-depth understanding of the dataset and how it was created, 
-check out our [paper](https://google.com) on the subject.**
+*If you want a more in-depth understanding of the dataset and how it was created, 
+check out our [paper](https://google.com) on the subject.*
 
 MAX FIX THE LINK HERE - arxiv paper??
 

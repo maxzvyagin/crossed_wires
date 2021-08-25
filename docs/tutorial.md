@@ -65,6 +65,7 @@ The plotting utilities for these objects can be found [here.](https://scikit-opt
 
 Here's an example of a plot we can generate, showing the partial dependency plots 
 (generated using `skopt.plots.plot_objective`):
+
 ![partial dependency](images/partial_dependency.png)
 
 ## Trained Models
