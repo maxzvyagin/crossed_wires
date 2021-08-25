@@ -49,7 +49,8 @@ into the separate spaces searched. These are accessible using this command:
 ## Search Objects
 
 As part of the integration with `scikit-optimize`, each overlapping space searched
-generates an `OptimizeResult` object. These track the Gaussian process and have
+generates an `OptimizeResult` object. These track the Gaussian processes which
+are responsible for the optimization, and have
 helpful utilities to understand the trajectory of the search. In addition, the
 surrogate models used to guide the search are contained here. 
 
@@ -60,7 +61,8 @@ surrogate models used to guide the search are contained here.
 
 The plotting utilities for these objects can be found [here.](https://scikit-optimize.github.io/stable/auto_examples/plots/visualizing-results.html#sphx-glr-auto-examples-plots-visualizing-results-py)
 
-Here's an example of a plot that we can generate:
-
+Here's an example of a plot we can generate, showing the partial dependency plots 
+(generated using `skopt.plots.plot_objective`):
+![partial dependency](images/partial_dependency.png)
 
 ## Trained Model
