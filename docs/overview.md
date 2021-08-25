@@ -30,7 +30,7 @@ trained on 400 sets of hyperparameters suggested by a search algorithm. These
 results showcase a wide range of benchmark accuracy divergence on the test set 
 split. The 390 GB dataset and benchmarks presented here include the performance 
 statistics, training curves, and model weights for all 1200 trials, resulting in 
-2400 total models. The hyperparameter searches are orchestrated using the 
+2400 total models. The hyperparameter searches were orchestrated using the 
 [SpaceRay](https://github.com/maxzvyagin/spaceray/) package. All data is currently
 hosted publicly on Google Cloud Storage.
 
