@@ -5,7 +5,8 @@
 It can be of great benefit to machine learning practicioners to have multiple 
 frameworks available for implementation and training of neural networks. However,
 it also comes with challenges, the main of which being *switching* between these different
-libraries. Critically, there can be vast accuracy differences between these frameworks,
+libraries while maintaining existing performance levels. Critically, there can 
+be vast accuracy differences between these frameworks,
 even when every possible effort is made to maintain consistency. This phenomenon
 can be greatly influenced by the hyperparameters selected, however, there is not
 currently an understanding as to why this is the case.
