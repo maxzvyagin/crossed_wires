@@ -10,6 +10,12 @@ you'll need in order to start working with the models.
    :maxdepth: 1
 
    overview
+   .. toctree::
+      :maxdepth 1
+
+      motivation
+      details
+
    installation
    tutorial
    key_links
