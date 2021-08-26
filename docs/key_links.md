@@ -1,5 +1,11 @@
 # Key Links
 
+## Full Dataset Download
+If you wish to download the dataset in its entirety, you are welcome to do so
+using this link: <https://storage.googleapis.com/crossed-wires-dataset/full_cifar10_results.zip>. 
+The full dataset size is approximately 340 GB expanded, and 324 GB compressed.
+It is licensed under CC-BY-4.0.
+
 ## Weights and Biases - Dataset Trial Logs
 All experiments were tracked using [Weights and Biases](https://wandb.ai/). These
 links include some extra information that can be helpful, such as training loss curves.
