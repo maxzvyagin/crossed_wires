@@ -25,4 +25,3 @@ hyperparameter optimization package which automated our search and provided
   implemented by Todd Young for more effective hyperparameter searches. This 
   original approach is integrated with Ray Tune in the 
   [SpaceRay](https://github.com/maxzvyagin/spaceray) package.
-- ANYTHING ELSE HERE??
