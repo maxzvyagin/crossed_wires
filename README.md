@@ -3,6 +3,9 @@ Welcome to the CrossedWires dataset. This is a Python package used in order to i
 
 All documentation on how to use the dataset and how to contribute can be found at: <https://crossedwires.readthedocs.io>. 
 
+If you wish to download the entire dataset as a zip file (340 GB), you are welcome to do so using this link: 
+<https://storage.googleapis.com/crossed-wires-dataset/full_cifar10_results.zip>
+
 The dataset itself is licensed under CC-BY-4.0. 
 
 <p align="center">
