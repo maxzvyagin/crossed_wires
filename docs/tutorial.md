@@ -5,8 +5,8 @@ the Python API, it's possible to pull dataframe files of the trials, `scikit-opt
 objects which detail the Gaussian process-based search history, 
 and the resulting models themselves.
 
-For the purpose of this tutorial, we'll be working with VGG portion of the dataset.
-However, the steps are the same for ResNet and DenseNet.
+For the purpose of this tutorial, we'll be working with ResNet portion of the dataset.
+However, the steps are the same for VGG and DenseNet.
 
 Let's start by loading and initializing the dataset class. 
 
