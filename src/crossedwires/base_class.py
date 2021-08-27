@@ -1,10 +1,10 @@
 import requests
 import pickle
-from io import BytesIO
 import pandas as pd
 import torch
 from os.path import exists
 import os
+from io import BytesIO
 
 
 class ModelWeightDataset:
@@ -18,7 +18,14 @@ class ModelWeightDataset:
 
     def wandb_dataframe(self):
         if self._wandb_dataframe is None:
-            self._wandb_dataframe = pd.read_csv(self.file_name)
+            file_stream = BytesIO(
+                requests.get(
+                    "https://storage.googleapis.com/crossed-wires-dataset/wandb_exports/{}".format(
+                        self.file_name
+                    )
+                ).content
+            )
+            self._wandb_dataframe = pd.read_csv(file_stream)
         return self._wandb_dataframe
 
     def optimizer_results(self, num=None):

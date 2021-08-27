@@ -1,5 +1,3 @@
-import crossedwires
-from pathlib import Path
 from crossedwires.base_class import ModelWeightDataset
 import torchvision.models as models
 import tensorflow as tf
@@ -11,10 +9,6 @@ class DenseNet121Dataset(ModelWeightDataset):
     def __init__(
         self, filename="densenet_cifar10_wandb_export.csv", num_spaces_searched=16
     ):
-        filename = str(
-            Path(crossedwires.cifar10.densenet121.densenet121_results.__file__).parent
-            / filename
-        )
         super().__init__(filename, num_spaces_searched)
         self.baseline_url = "https://storage.googleapis.com/crossed-wires-dataset/cifar10/densenet_lambda"
 

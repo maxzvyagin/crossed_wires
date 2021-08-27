@@ -1,5 +1,3 @@
-import crossedwires
-from pathlib import Path
 from crossedwires.base_class import ModelWeightDataset
 
 # import torchvision.models as models
@@ -11,9 +9,6 @@ from os.path import exists
 class VGG16Dataset(ModelWeightDataset):
     # inheriting from base class, specialized to VGG
     def __init__(self, filename="vgg_cifar10_wandb_export.csv", num_spaces_searched=16):
-        filename = str(
-            Path(crossedwires.cifar10.vgg16.vgg16_results.__file__).parent / filename
-        )
         super().__init__(filename, num_spaces_searched)
         self.baseline_url = (
             "https://storage.googleapis.com/crossed-wires-dataset/cifar10/vgg_lambda"
