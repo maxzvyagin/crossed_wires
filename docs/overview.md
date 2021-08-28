@@ -39,5 +39,4 @@ hosted publicly on Google Cloud Storage.
 *If you want a more in-depth understanding of the dataset and how it was created, 
 check out our [paper](https://google.com) on the subject.*
 
-MAX FIX THE LINK HERE - arxiv paper??
 
