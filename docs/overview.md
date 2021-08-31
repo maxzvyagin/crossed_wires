@@ -37,6 +37,6 @@ hosted publicly on Google Cloud Storage.
 ### *Note:*
 
 *If you want a more in-depth understanding of the dataset and how it was created, 
-check out our [paper](https://google.com) on the subject.*
+check out our [paper](https://arxiv.org/abs/2108.12768) on the subject.*
 
 
